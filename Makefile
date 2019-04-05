@@ -3,7 +3,7 @@ DEV_ROCKS = busted luacheck
 .PHONY: install dev clean doc lint test coverage
 
 install:
-	luarocks make kong-forward-proxy-*.rockspec \
+	luarocks make kong-plugin-forward-proxy-*.rockspec \
 
 dev: install
 	@for rock in $(DEV_ROCKS) ; do \

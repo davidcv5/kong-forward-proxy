@@ -1,15 +1,17 @@
-# kong-forward-proxy
+# kong-plugin-forward-proxy
 
-A Kong plugin that allows access to an upstream url through a forward proxy (eg. squid).
+#### This is a fork from [kong-forward-proxy](https://github.com/tfabien/kong-forward-proxy) from @tfabien to support Kong 1.x
 
-![---](kong-forward-proxy.png?raw=true)
+A Kong 1.x plugin that allows access to an upstream url through a forward proxy.
+
+![---](./kong-plugin-forward-proxy.svg)
 
 ## Configuration
-Add this plugin globally or attached to an API.
-All calls to the API's upstream URL will then be proxied through the specify proxy host and port.
+Add this plugin globally or attached to a Service.
+All calls routed to a Service will then be proxied through the specify proxy host and port.
 
 ```bash
-$ curl -X POST http://kong:8001/apis/{api}/plugins \
+$ curl -X POST http://kong:8001/service/{api}/plugins \
     --data "name=forward-proxy" \
     --data "config.proxy_host=proxy.mycorp.org" \
     --data "config.proxy_port=8080"
@@ -27,6 +29,8 @@ Edit your ```kong.yaml``` to include the plugin like so:
 custom_plugins:
   - forward-proxy
 ```
+
+Or add it as an environment variable: `KONG_PLUGINS=bundled,forward-proxy`
 
 Restart Kong.
 
